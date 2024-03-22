@@ -8,6 +8,18 @@ class SpellChecker:
         pass
 
     def handleSentence(self, txtIn, language):
+        campi=txtIn.strip().split()
+        print("Campi:",campi)
+        parole=[]
+        for parola in campi:
+            parola.lower()
+            parola=replaceChars(parola)
+            parole.append(parola)
+        print("Parole:", parole)
+        m=md.MultiDictionary()
+        m.searchWord(parole, language)
+        m.searchWordLinear(parole, language)
+        m.searchWordDicothomic(parole, language)
         pass
 
     def printMenu(self):
@@ -23,4 +35,7 @@ class SpellChecker:
 
 
 def replaceChars(text):
-    pass
+        chars="\\`*_{}[]()>#+-.!$%^;,=_~"
+        for c in chars:
+            text = text.replace(c, "")
+        return text
